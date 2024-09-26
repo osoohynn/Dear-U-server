@@ -38,6 +38,7 @@ public class LetterService {
 
     public LetterResponse getLetter(Long id) {
         Letter letter = letterRepository.findById(id).orElseThrow(() -> new CustomException(LetterError.LETTER_NOT_FOUND));
+        letter.setRead(true);
         return LetterResponse.of(letter);
     }
 

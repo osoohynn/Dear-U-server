@@ -12,6 +12,7 @@ public class LetterResponse{
     private final String content;
     private final User fromUser;
     private final User toUser;
+    private final boolean isRead;
 
     public static LetterResponse of(Letter letter) {
         return LetterResponse.builder()
@@ -19,6 +20,7 @@ public class LetterResponse{
                 .content(letter.getContent())
                 .fromUser(letter.getFromUser())
                 .toUser(letter.getToUser())
+                .isRead(letter.isRead())
                 .build();
     }
 }
