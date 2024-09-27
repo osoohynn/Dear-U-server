@@ -8,6 +8,8 @@ public record SignUpRequest(
         @NotBlank
         String name,
         @NotBlank
-        String password
+        String password,
+        @NotBlank
+        String studentNumber
 ) {
 }

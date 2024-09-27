@@ -38,6 +38,7 @@ public class AuthService {
         User user = User.builder()
                 .username(username)
                 .name(request.name())
+                .studentNumber(request.studentNumber())
                 .password(password)
                 .role(UserRole.USER)
                 .build();
@@ -95,6 +96,6 @@ public class AuthService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new CustomException(UserError.USER_NOT_FOUND));
 
-        return new UserResponse(user.getId(), user.getUsername(), user.getRole());
+        return UserResponse.of(user);
     }
 }

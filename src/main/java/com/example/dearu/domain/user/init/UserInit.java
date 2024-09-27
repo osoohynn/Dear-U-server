@@ -25,7 +25,8 @@ public class UserInit {
                 User.builder()
                         .role(UserRole.ADMIN)
                         .username(adminProperties.getUsername())
-                        .name("권수현")
+                        .name("관리자")
+                        .studentNumber("학번없음ㅋ")
                         .password(passwordEncoder.encode(adminProperties.getPassword()))
                         .build()
         );
