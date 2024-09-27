@@ -1,7 +1,6 @@
 package com.example.dearu.domain.letter.controller;
 
 
-import com.example.dearu.domain.letter.domian.Letter;
 import com.example.dearu.domain.letter.dto.request.LetterCreateRequest;
 import com.example.dearu.domain.letter.dto.response.LetterResponse;
 import com.example.dearu.domain.letter.service.LetterService;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
