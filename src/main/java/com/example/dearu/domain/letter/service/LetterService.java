@@ -24,7 +24,10 @@ public class LetterService {
     private final UserSession userSession;
 
     public void createLetter(LetterCreateRequest request) {
-        User toUser = userRepository.findByUsername(request.username()).orElseThrow(() -> new CustomException(UserError.USER_NOT_FOUND));
+        User toUser = selectUser(request.name());
+        if (toUser == null) {
+            throw new CustomException(UserError.USER_NOT_FOUND);
+        }
         User fromUser = userSession.getUser();
 
         Letter letter = Letter.builder()
@@ -46,5 +49,18 @@ public class LetterService {
         User fromUser = userSession.getUser();
         List<Letter> letters = letterRepository.findByFromUser(fromUser);
         return letters.stream().map(LetterResponse::of).toList();
+    }
+
+    public User selectUser(String name) {
+        List<User> users = userRepository.findAllByName(name);
+        if (users.size() > 1) {
+            // 사용자 선택 로직 (여기서는 단순히 첫 번째 사용자를 선택하는 예시)
+            // 실제로는 클라이언트에서 사용자 선택 UI를 제공해야 함
+            return users.get(0);
+        } else if (users.size() == 1) {
+            return users.get(0);
+        } else {
+            throw new CustomException(UserError.USER_NOT_FOUND);
+        }
     }
 }
