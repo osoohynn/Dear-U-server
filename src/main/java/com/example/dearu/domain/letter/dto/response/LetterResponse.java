@@ -11,7 +11,6 @@ public class LetterResponse{
     private final Long id;
     private final String content;
     private final User fromUser;
-//    private final String fromUserName;
     private final User toUser;
     private final boolean isRead;
 
@@ -20,7 +19,6 @@ public class LetterResponse{
                 .id(letter.getId())
                 .content(letter.getContent())
                 .fromUser(letter.getFromUser())
-//                .fromUserName(letter.getFromUser().getUsername())
                 .toUser(letter.getToUser())
                 .isRead(letter.isRead())
                 .build();

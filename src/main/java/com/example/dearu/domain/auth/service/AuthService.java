@@ -37,6 +37,7 @@ public class AuthService {
 
         User user = User.builder()
                 .username(username)
+                .name(request.name())
                 .password(password)
                 .role(UserRole.USER)
                 .build();
