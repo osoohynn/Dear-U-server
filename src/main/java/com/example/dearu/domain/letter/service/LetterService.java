@@ -34,6 +34,7 @@ public class LetterService {
                 .fromUser(fromUser)
                 .toUser(toUser)
                 .content(request.content())
+                .isAnonymous(request.isAnonymous())
                 .build();
 
         letterRepository.save(letter);
@@ -42,13 +43,13 @@ public class LetterService {
     public LetterResponse getLetter(Long id) {
         Letter letter = letterRepository.findById(id).orElseThrow(() -> new CustomException(LetterError.LETTER_NOT_FOUND));
         letter.setRead(true);
-        return LetterResponse.of(letter);
+        return letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter);
     }
 
     public List<LetterResponse> getLetters() {
         User fromUser = userSession.getUser();
         List<Letter> letters = letterRepository.findByFromUser(fromUser);
-        return letters.stream().map(LetterResponse::of).toList();
+        return letters.stream().map((letter) -> letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter)).toList();
     }
 
     public User selectUser(String name) {
