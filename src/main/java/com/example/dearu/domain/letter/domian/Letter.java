@@ -25,6 +25,7 @@ public class Letter {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Setter
     @Column(nullable = false)
     private String content;
 

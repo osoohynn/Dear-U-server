@@ -3,6 +3,7 @@ package com.example.dearu.domain.letter.service;
 
 import com.example.dearu.domain.letter.domian.Letter;
 import com.example.dearu.domain.letter.dto.request.LetterCreateRequest;
+import com.example.dearu.domain.letter.dto.request.LetterUpdateRequest;
 import com.example.dearu.domain.letter.dto.response.LetterResponse;
 import com.example.dearu.domain.letter.error.LetterError;
 import com.example.dearu.domain.letter.repository.LetterRepository;
@@ -50,6 +51,13 @@ public class LetterService {
         User fromUser = userSession.getUser();
         List<Letter> letters = letterRepository.findByFromUser(fromUser);
         return letters.stream().map((letter) -> letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter)).toList();
+    }
+
+    public void updateLetter(Long id, LetterUpdateRequest request) {
+        Letter letter = letterRepository.findById(id).orElseThrow(() -> new CustomException(LetterError.LETTER_NOT_FOUND));
+        letter.setContent(request.content());
+
+        letterRepository.save(letter);
     }
 
     public User selectUser(String name) {
