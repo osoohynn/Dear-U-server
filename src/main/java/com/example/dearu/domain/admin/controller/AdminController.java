@@ -23,13 +23,18 @@ public class AdminController {
         return adminService.getUsers();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/users/{userId}")
     private User getUser(@PathVariable Long userId) {
         return adminService.getUserById(userId);
     }
 
     @GetMapping("/letters")
     private List<Letter> getLetters() {
-        return adminService.getLetter();
+        return adminService.getLetters();
+    }
+
+    @GetMapping("/letters/{userId}")
+    private List<Letter> getLettersByUser(@PathVariable Long userId) {
+        return adminService.getLettersByUser(userId);
     }
 }

@@ -26,7 +26,12 @@ public class AdminService {
         return userRepository.findById(id).orElseThrow(() -> new CustomException(UserError.USER_NOT_FOUND));
     }
 
-    public List<Letter> getLetter() {
+    public List<Letter> getLetters() {
         return letterRepository.findAll();
+    }
+
+    public List<Letter> getLettersByUser(Long userId) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new CustomException(UserError.USER_NOT_FOUND));
+        return letterRepository.findByFromUser(user);
     }
 }
