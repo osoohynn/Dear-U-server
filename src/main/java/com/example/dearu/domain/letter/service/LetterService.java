@@ -60,6 +60,10 @@ public class LetterService {
         letterRepository.save(letter);
     }
 
+    public void deleteLetter(Long id) {
+        letterRepository.deleteById(id);
+    }
+
     public User selectUser(String name) {
         List<User> users = userRepository.findAllByName(name);
         if (users.size() > 1) {
