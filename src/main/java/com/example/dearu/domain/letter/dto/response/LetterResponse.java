@@ -1,7 +1,7 @@
 package com.example.dearu.domain.letter.dto.response;
 
 import com.example.dearu.domain.letter.domian.Letter;
-import com.example.dearu.domain.user.domain.User;
+import com.example.dearu.domain.user.dto.request.UserResponse;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,16 +12,16 @@ import lombok.Getter;
 public class LetterResponse{
     private final Long id;
     private final String content;
-    private final User fromUser;
-    private final User toUser;
+    private final UserResponse fromUser;
+    private final UserResponse toUser;
     private final boolean isRead;
 
     public static LetterResponse of(Letter letter) {
         return LetterResponse.builder()
                 .id(letter.getId())
                 .content(letter.getContent())
-                .fromUser(letter.getFromUser())
-                .toUser(letter.getToUser())
+                .fromUser(UserResponse.of(letter.getFromUser()))
+                .toUser(UserResponse.of(letter.getToUser()))
                 .isRead(letter.isRead())
                 .build();
     }
@@ -31,7 +31,7 @@ public class LetterResponse{
                 .id(letter.getId())
                 .content(letter.getContent())
                 .fromUser(null)
-                .toUser(letter.getToUser())
+                .toUser(UserResponse.of(letter.getToUser()))
                 .isRead(letter.isRead())
                 .build();
     }
