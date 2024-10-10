@@ -15,6 +15,7 @@ public class LetterResponse{
     private final String content;
     private final UserResponse fromUser;
     private final UserResponse toUser;
+    private final boolean isAnonymous;
     private final boolean isRead;
 
     public static LetterResponse of(Letter letter) {
@@ -36,6 +37,7 @@ public class LetterResponse{
                 .fromUser(null)
                 .toUser(UserResponse.of(letter.getToUser()))
                 .isRead(letter.isRead())
+                .isAnonymous(true)
                 .build();
     }
 }
