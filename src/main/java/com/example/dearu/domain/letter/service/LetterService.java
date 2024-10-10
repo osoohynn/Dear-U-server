@@ -34,6 +34,7 @@ public class LetterService {
         Letter letter = Letter.builder()
                 .fromUser(fromUser)
                 .toUser(toUser)
+                .title(request.title())
                 .content(request.content())
                 .isAnonymous(request.isAnonymous())
                 .build();
@@ -66,6 +67,7 @@ public class LetterService {
 
     public void updateLetter(Long id, LetterUpdateRequest request) {
         Letter letter = letterRepository.findById(id).orElseThrow(() -> new CustomException(LetterError.LETTER_NOT_FOUND));
+        letter.setTitle(request.title());
         letter.setContent(request.content());
 
         letterRepository.save(letter);

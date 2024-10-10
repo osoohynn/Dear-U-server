@@ -11,6 +11,7 @@ import lombok.Getter;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LetterResponse{
     private final Long id;
+    private final String title;
     private final String content;
     private final UserResponse fromUser;
     private final UserResponse toUser;
@@ -19,6 +20,7 @@ public class LetterResponse{
     public static LetterResponse of(Letter letter) {
         return LetterResponse.builder()
                 .id(letter.getId())
+                .title(letter.getTitle())
                 .content(letter.getContent())
                 .fromUser(UserResponse.of(letter.getFromUser()))
                 .toUser(UserResponse.of(letter.getToUser()))
@@ -29,6 +31,7 @@ public class LetterResponse{
     public static LetterResponse ofAnonymous(Letter letter) {
         return LetterResponse.builder()
                 .id(letter.getId())
+                .title(letter.getTitle())
                 .content(letter.getContent())
                 .fromUser(null)
                 .toUser(UserResponse.of(letter.getToUser()))

@@ -27,6 +27,10 @@ public class Letter {
 
     @Setter
     @Column(nullable = false)
+    private String title;
+
+    @Setter
+    @Column(nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)
