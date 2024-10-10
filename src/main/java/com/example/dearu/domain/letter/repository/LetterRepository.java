@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface LetterRepository extends JpaRepository<Letter, Long> {
     List<Letter> findByFromUser(User fromUser);
+
+    List<Letter> findByToUser(User toUser);
 }

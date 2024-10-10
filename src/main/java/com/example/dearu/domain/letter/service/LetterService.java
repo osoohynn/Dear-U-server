@@ -47,9 +47,15 @@ public class LetterService {
         return letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter);
     }
 
-    public List<LetterResponse> getLetters() {
+    public List<LetterResponse> getMyLetters() {
         User fromUser = userSession.getUser();
         List<Letter> letters = letterRepository.findByFromUser(fromUser);
+        return letters.stream().map((letter) -> letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter)).toList();
+    }
+
+    public List<LetterResponse> getReceivedLetters() {
+        User toUser = userSession.getUser();
+        List<Letter> letters = letterRepository.findByToUser(toUser);
         return letters.stream().map((letter) -> letter.isAnonymous() ? LetterResponse.ofAnonymous(letter) : LetterResponse.of(letter)).toList();
     }
 

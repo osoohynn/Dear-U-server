@@ -28,9 +28,14 @@ public class LetterController {
         letterService.createLetter(request);
     }
 
-    @GetMapping
-    public List<LetterResponse> getLetters() {
-        return letterService.getLetters();
+    @GetMapping("/myLetters")
+    public List<LetterResponse> geMytLetters() {
+        return letterService.getMyLetters();
+    }
+
+    @GetMapping("/receivedLetters")
+    public List<LetterResponse> getReceivedLetters() {
+        return letterService.getReceivedLetters();
     }
 
     @GetMapping("/{letterId}")
