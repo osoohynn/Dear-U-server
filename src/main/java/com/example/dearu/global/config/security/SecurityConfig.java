@@ -58,6 +58,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/letters/{letterId}").authenticated()
                         .requestMatchers(HttpMethod.POST, "/letters").authenticated()
                         .requestMatchers(HttpMethod.GET, "/letters").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/letters/{letterId}").authenticated()
                 )
 
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
