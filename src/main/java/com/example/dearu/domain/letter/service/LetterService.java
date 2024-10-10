@@ -67,6 +67,12 @@ public class LetterService {
 
     public void updateLetter(Long id, LetterUpdateRequest request) {
         Letter letter = letterRepository.findById(id).orElseThrow(() -> new CustomException(LetterError.LETTER_NOT_FOUND));
+
+        System.out.println(letter.isRead());
+        if (letter.isRead()) {
+            throw new CustomException(LetterError.LETTER_CAN_NOT_CHANGE);
+        }
+
         letter.setTitle(request.title());
         letter.setContent(request.content());
 
